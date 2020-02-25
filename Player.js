@@ -46,88 +46,11 @@ class Player {
 
     return result;
   }
-  /*
-  protectKing() {
-    let path = this.getPath(this.KingPiece.position, this.attackPiece.position);
 
-    for (let i = 0; i < createdPieces[this.group].length; i++) {
-      createdPieces[this.group][i].calcMoves();
-      createdPieces[this.group][i].defencePositions = [];
-      createdPieces[this.group][i].protectedPositions = [];
-
-      for (
-        let j = 0;
-        j < createdPieces[this.group][i].normalMoves.length;
-        j++
-      ) {
-        for (let k = 0; k < path.length; k++) {
-          if (
-            createdPieces[this.group][i].normalMoves[j][0] == path[k][0] &&
-            createdPieces[this.group][i].normalMoves[j][1] == path[k][1] &&
-            createdPieces[this.group][i].category != catagories.King
-          ) {
-            createdPieces[this.group][i].active = true;
-            createdPieces[this.group][i].defence = true;
-            createdPieces[this.group][i].defencePositions.push(path[k]);
-          }
-        }
-      }
-
-      for (
-        let j = 0;
-        j < createdPieces[this.group][i].attackMoves.length;
-        j++
-      ) {
-        for (
-          let j = 0;
-          j < createdPieces[this.group][i].attackMoves.length;
-          j++
-        ) {
-          if (
-            createdPieces[this.group][i].attackMoves[j][0] ==
-              this.attackPiece.position[0] &&
-            createdPieces[this.group][i].attackMoves[j][1] ==
-              this.attackPiece.position[1]
-          ) {
-            createdPieces[this.group][i].active = true;
-            createdPieces[this.group][i].defence = true;
-            createdPieces[this.group][i].protectedPositions.push(
-              this.attackPiece.position
-            );
-          }
-        }
-      }
-    }
-
-    // the king movements
-    for (let j = 0; j < this.KingPiece.normalMoves.length; j++) {
-      let canMove = true;
-      for (let k = 0; k < path.length; k++) {
-        if (
-          this.KingPiece.normalMoves[j][0] == path[k][0] &&
-          this.KingPiece.normalMoves[j][1] == path[k][1]
-        ) {
-          canMove = false;
-        }
-      }
-
-      if (canMove) {
-        this.KingPiece.defencePositions.push(this.KingPiece.normalMoves[j]);
-        this.KingPiece.active = true;
-        this.KingPiece.defence = true;
-      }
-    }
-  }
-*/
   activate() {
-    /*if (this.underAttack) {
-      this.protectKing();
-      return;
-    }*/
-    for (let i = 0; i < createdPieces[this.group].length; i++) {
+    for (let i = 0; i < createdPieces[this.group].length; i++)
       createdPieces[this.group][i].active = true;
-      createdPieces[this.group][i].defence = false;
-    }
+
     this.active = true;
   }
   updatePiecesPositions() {

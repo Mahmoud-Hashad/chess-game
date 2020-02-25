@@ -14,9 +14,6 @@ class Piece {
     this.moveCount = 0;
     this.LastMoveTurn = 0;
     this.active = false;
-    this.defence = false;
-    this.defencePositions = [];
-    this.protectedPositions = [];
     this.pawnSpecialMovie = null;
     createdPieces[group].push(this);
   }
@@ -186,7 +183,6 @@ class Piece {
     );
   }
   calcMoves() {
-    console.log("hi");
     if (this.moveType == "static") this.calcAvailableStaticMoves();
     else this.calcAvailableDynamicMoves();
   }
@@ -196,10 +192,7 @@ class Piece {
 
     let blueBlocks = this.normalMoves;
     let redBlocks = this.attackMoves;
-    if (this.defence) {
-      blueBlocks = this.defencePositions;
-      redBlocks = this.protectedPositions;
-    }
+
     for (let i = 0; i < blueBlocks.length; i++) {
       let nextMoveColor = color(BlocksColor.normalMove);
       nextMoveColor.setAlpha(100);
@@ -253,10 +246,7 @@ class Piece {
     let blueBlocks = this.normalMoves;
     let redBlocks = this.attackMoves;
     let purpleBlocks = this.pawnSpecialMovies;
-    if (this.defence) {
-      blueBlocks = this.defencePositions;
-      redBlocks = this.protectedPositions;
-    }
+
     for (let i = 0; i < blueBlocks.length; i++) {
       if (x == blueBlocks[i][0] && y == blueBlocks[i][1]) {
         this.position[0] = x;
@@ -328,9 +318,6 @@ class Piece {
           x == this.castlingPositions[i][0] &&
           y == this.castlingPositions[i][1]
         ) {
-          console.log("=============");
-          console.log(x, this.position[0]);
-
           this.castlingRooks[i].position[1] = y;
           if (x > this.position[0]) {
             this.castlingRooks[i].position[0] = x - 1;
