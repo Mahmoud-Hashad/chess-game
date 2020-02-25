@@ -89,9 +89,37 @@ class Player {
           t.pawnSpecialMovie = null;
         }
       }
-      t.position = [...tempPosition];
+
+      if (t == this.KingPiece && t.castlingPositions) {
+        for (let m = 0; m < t.castlingPositions.length; m++) {
+          t.position = [...t.castlingPositions[m]];
+          this.checkMate();
+          console.log("i came here");
+          let valid = false;
+          for (let n = 0; n < tempNormalMoves.length; n++) {
+            console.log("and here");
+            console.log(tempNormalMoves[n]);
+
+            if (
+              (tempNormalMoves[n][1] == t.castlingPositions[m][1] &&
+                tempNormalMoves[n][0] == t.castlingPositions[m][0] - 1) ||
+              (tempNormalMoves[n][1] == t.castlingPositions[m][1] &&
+                tempNormalMoves[n][0] == t.castlingPositions[m][0] + 1)
+            ) {
+              valid = true;
+              break;
+            }
+          }
+          if (this.underAttack || !valid) {
+            t.castlingPositions.splice(m, 1);
+            t.castlingRooks.splice(m, 1);
+            m--;
+          }
+        }
+      }
       t.normalMoves = [...tempNormalMoves];
       t.attackMoves = [...tempAttackMoves];
+      t.position = [...tempPosition];
     }
   }
 
@@ -142,9 +170,9 @@ class Player {
 
   startTurn() {
     PlayingCount[this.group]++;
+    this.castling();
     this.updatePiecesPositions();
     this.checkMate();
-    this.castling();
     this.activate();
   }
   endTurn() {
