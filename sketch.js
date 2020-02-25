@@ -11,15 +11,17 @@ function setup() {
 }
 
 function draw() {
-  clear();
-  background("red");
-  noStroke();
   chessBoard.draw();
 
   createdPieces[groups.White].forEach(e => e.draw());
   createdPieces[groups.Black].forEach(e => e.draw());
 
   if (focusedPiece) focusedPiece.showMoves();
+  if (gameOver) {
+    ResultBox.style.display = "block";
+    ResultMessageH3.innerText = message;
+    noLoop();
+  }
 }
 
 function mouseClicked() {

@@ -174,6 +174,7 @@ class Player {
     this.updatePiecesPositions();
     this.checkMate();
     this.activate();
+    this.gameOver();
   }
   endTurn() {
     this.unActivate();
@@ -211,5 +212,22 @@ class Player {
     }
     this.underAttack = false;
     this.attackPiece = null;
+  }
+  gameOver() {
+    let noProtect = true;
+    for (let i = 0; i < createdPieces[this.group].length; i++) {
+      if (
+        createdPieces[this.group][i].normalMoves.length ||
+        createdPieces[this.group][i].attackMoves.length
+      ) {
+        noProtect = false;
+      }
+    }
+    if (noProtect) {
+      gameOver = true;
+      message = this.underAttack
+        ? `Congratulations ${against[this.group]} Wins`
+        : "Unfortunately Draw";
+    }
   }
 }

@@ -3,11 +3,18 @@ function preload() {
   img = loadImage("graphics.png");
 }
 
+const ResultBox = document.getElementById("resultBox");
+const ResultMessageH3 = document.getElementById("result");
+document.getElementById("clearTheMessage").addEventListener("click", () => {
+  ResultBox.style.display = "none";
+});
 // global config of board
 const width = 640,
   height = 640,
   boardSize = 8;
 
+let gameOver = false;
+let message = "";
 // pieces config
 let createdPieces = {
   White: [],

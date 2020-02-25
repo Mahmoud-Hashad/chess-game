@@ -11,6 +11,7 @@
         background-color: #ddd;
       }
       canvas {
+        box-sizing: border-box;
         box-shadow: 0 0 31px -2px #333;
         position: absolute;
         top: 50%;
@@ -20,8 +21,56 @@
         transform: translate(-50%, -50%);
         border: 5px solid #333;
       }
+      #resultBox {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        display: none;
+      }
+      #content {
+        position: absolute;
+        width: 400px;
+        height: 180px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ddd;
+        border-radius: 7px;
+      }
+      #content header {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        border-bottom: 2px solid #333;
+      }
+      #content h3 {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-size: 20px;
+      }
+      #content button {
+        width: 60px;
+        height: 30px;
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        background: #0008ff69;
+        border: 1px solid #333;
+        border-radius: 3px;
+        margin-left: 12px;
+        cursor: pointer;
+      }
     </style>
-
+    <div id="resultBox">
+      <div id="content">
+        <header><h2>It Was A Great Game</h2></header>
+        <h3 id="result">player 1 Wins</h3>
+        <button id="clearTheMessage">OK</button>
+      </div>
+    </div>
     <script src="p5.js"></script>
     <script src="p5.sound.js"></script>
     <script src="config.js"></script>
