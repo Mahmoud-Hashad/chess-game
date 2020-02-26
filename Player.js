@@ -226,7 +226,7 @@ class Player {
     if (noProtect) {
       gameOver = true;
       message = this.underAttack
-        ? `Congratulations ${against[this.group]} Wins`
+        ? `Congratulations ${against[this.group]} Player Wins`
         : "Unfortunately Draw";
     }
   }
