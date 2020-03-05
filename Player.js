@@ -48,8 +48,16 @@ class Player {
   }
 
   activate() {
-    for (let i = 0; i < createdPieces[this.group].length; i++)
+    this.Rooks = [];
+    for (let i = 0; i < createdPieces[this.group].length; i++) {
       createdPieces[this.group][i].active = true;
+
+      if (createdPieces[this.group][i].category == catagories.King)
+        this.KingPiece = createdPieces[this.group][i];
+
+      if (createdPieces[this.group][i].category == catagories.Rook)
+        this.Rooks.push(createdPieces[this.group][i]);
+    }
 
     this.active = true;
   }
@@ -170,10 +178,10 @@ class Player {
 
   startTurn() {
     PlayingCount[this.group]++;
+    this.activate();
     this.castling();
     this.updatePiecesPositions();
     this.checkMate();
-    this.activate();
     this.gameOver();
   }
   endTurn() {
