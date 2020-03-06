@@ -13,6 +13,15 @@ const width = 640,
   height = 640,
   boardSize = 8;
 
+// history
+let history = {
+  pieces: [],
+  count: [],
+  player1: [],
+  player2: [],
+  gameStatus: []
+};
+
 let gameOver = false;
 let message = "";
 // pieces config
