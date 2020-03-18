@@ -11,7 +11,6 @@ function botMove(player) {
       availableMoves.push(...botPiece.pawnSpecialMovie);
     if (botPiece.castlingPositions)
       availableMoves.push(...botPiece.castlingPositions);
-    //console.log(availableMoves);
     if (availableMoves.length > 0) {
       let botMoveIndex = floor(random(0, availableMoves.length));
       let botMovePosition = availableMoves[botMoveIndex];

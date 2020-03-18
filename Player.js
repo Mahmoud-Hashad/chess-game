@@ -102,12 +102,8 @@ class Player {
         for (let m = 0; m < t.castlingPositions.length; m++) {
           t.position = [...t.castlingPositions[m]];
           this.checkMate();
-          console.log("i came here");
           let valid = false;
           for (let n = 0; n < tempNormalMoves.length; n++) {
-            console.log("and here");
-            console.log(tempNormalMoves[n]);
-
             if (
               (tempNormalMoves[n][1] == t.castlingPositions[m][1] &&
                 tempNormalMoves[n][0] == t.castlingPositions[m][0] - 1) ||

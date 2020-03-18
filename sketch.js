@@ -35,7 +35,6 @@ function mouseClicked() {
   ) {
     let x = floor(mouseX / (height / boardSize));
     let y = floor(mouseY / (width / boardSize));
-    console.log(x, y);
     if (focusedPiece && focusedPiece.move(x, y)) {
       focusedPiece = null;
 
