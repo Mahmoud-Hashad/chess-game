@@ -178,6 +178,7 @@ class Player {
 
   startTurn() {
     PlayingCount[this.group]++;
+    this.checkMate();
     this.activate();
     this.castling();
     this.updatePiecesPositions();

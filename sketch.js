@@ -26,21 +26,33 @@ function draw() {
 }
 
 function mouseClicked() {
-  if (mouseX >= 0 && mouseX <= height && mouseY >= 0 && mouseY <= width) {
+  if (
+    mouseX >= 0 &&
+    mouseX <= height &&
+    mouseY >= 0 &&
+    mouseY <= width &&
+    !gameOver
+  ) {
     let x = floor(mouseX / (height / boardSize));
     let y = floor(mouseY / (width / boardSize));
     console.log(x, y);
     if (focusedPiece && focusedPiece.move(x, y)) {
+      focusedPiece = null;
+
+      loop();
+
       if (player1.active == true) {
         player2.startTurn();
         player1.endTurn();
-      } else {
+        if (!gameOver) botMove(player2);
         player1.startTurn();
         player2.endTurn();
       }
-      focusedPiece = null;
+
       saveGame();
-      loop();
+      setTimeout(() => {
+        loop();
+      }, 500);
       return;
     }
     for (let i = 0; i < createdPieces[groups.Black].length; i++) {
@@ -65,8 +77,8 @@ function mouseClicked() {
     }
 
     focusedPiece = null;
+    loop();
   }
-  loop();
 }
 
 function keyPressed(e) {

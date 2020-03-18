@@ -18,7 +18,7 @@ class Piece {
     createdPieces[group].push(this);
   }
 
-  pawnSpecialMovies() {
+  pawnSpecialMoves() {
     this.normalMoves.splice(0, this.normalMoves.length);
     this.attackMoves.splice(0, this.attackMoves.length);
     this.pawnSpecialMovie = null;
@@ -95,9 +95,14 @@ class Piece {
   }
 
   upgrade() {
-    let n = prompt(
-      "Write Number Of Your Choice(default : queen):\n 1-Rook\n 2-Bishop\n 3-Knight\n 4-Queen"
-    );
+    let n;
+    if (this.group == groups.Black) {
+      n = floor(random(1, 8)).toString();
+    } else {
+      n = prompt(
+        "Write Number Of Your Choice(default : queen):\n 1-Rook\n 2-Bishop\n 3-Knight\n 4-Queen"
+      );
+    }
     switch (n.trim()) {
       case "1":
         this.category = catagories.Rook;
@@ -120,7 +125,7 @@ class Piece {
 
   calcAvailableStaticMoves() {
     if (this.category == catagories.Pawn) {
-      this.pawnSpecialMovies();
+      this.pawnSpecialMoves();
       return;
     }
 
@@ -245,7 +250,7 @@ class Piece {
     // check for normal moves
     let blueBlocks = this.normalMoves;
     let redBlocks = this.attackMoves;
-    let purpleBlocks = this.pawnSpecialMovies;
+    let purpleBlocks = this.pawnSpecialMoves;
 
     for (let i = 0; i < blueBlocks.length; i++) {
       if (x == blueBlocks[i][0] && y == blueBlocks[i][1]) {
